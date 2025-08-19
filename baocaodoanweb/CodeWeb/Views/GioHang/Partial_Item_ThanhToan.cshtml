@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Web_61131562.Models.GioHangItem>
+@using Web_61131562.Common
+@if (Model != null && Model.Any())
+{
+    <h3>Giỏ Hàng<span style="float:right; position:relative"><small>@Model.Count()</small></span></h3>
+    var i = 0;
+    var tongTien = decimal.Zero;
+    <div style="border:1px solid #808080;">
+        <table class="table">
+        @foreach (var item in Model)
+        {
+            tongTien += item.TongGia;
+            <tr>
+                <td>@item.TenMatHang</td>
+                <td>@Common.FormatNumber(item.GiaBan, 0)</td>
+            </tr>
+        }
+        <tr>
+            <td>Tổng Tiền</td>
+            <td>@Common.FormatNumber(tongTien, 0)</td>
+        </tr>
+    </table>
+    </div>
+    
+
+}
+else
+{
+}

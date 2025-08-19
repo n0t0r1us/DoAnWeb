@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Web_61131562.Models.GioHangItem>
+@using Web_61131562.Common
+<table class="table">
+    <tr class="text-center">
+        <th>STT</th>
+        <th>Ảnh Mặt Hàng</th>
+        <th>Tên Mặt Hàng</th>
+        <th>Danh Mục</th>
+        <th>Giá Bán</th>
+        <th style="width:100px">Số Lượng</th>
+        <th>Thành Tiền</th>
+        <th style="width:200px;">
+
+        </th>
+
+    </tr>
+    @if (Model != null && Model.Any())
+    {
+        var i = 0;
+        var tongTien = decimal.Zero;
+        foreach (var item in Model)
+        {
+            tongTien += item.TongGia;
+            <tr class="text-center" id="trow_@item.MaMH">
+                <td>@(i+1)</td>
+                <td><img src="@item.AnhMatHang" width="60"</td>
+                <td><a href="/chi-tiet/@item.Alias-p@(item.MaMH)">@item.TenMatHang</a></td>
+                <td>@item.TenDMMH</td>
+                <td>@Common.FormatNumber(item.GiaBan, 0)</td>
+                <td><input type="number" class="form-control" id="SoLuong_@item.MaMH" value="@item.SoLuong" /></td>
+                <th>@Common.FormatNumber(item.TongGia, 2)</th>
+                <td>
+                    <a href="#" data-id="@item.MaMH" class="btn btn-sm btn-danger btnXoa">Xóa</a>
+                    <a href="#" data-id="@item.MaMH" class="btn btn-sm btn-success btnCapNhat">Cập Nhật</a>
+                </td>
+            </tr>
+            i++;
+        }
+        <tr>
+            <th colspan="6" class="text-right">Tổng Tiền: </th>
+            <th class="text-center">@Common.FormatNumber(tongTien, 0)</th>
+            <th></th>
+        </tr>
+        
+    }
+    else
+    {
+        <tr>
+            <th colspan="7">Không Có Mặt Hàng Trong Giỏ Hàng!</th>
+        </tr>
+    }
+</table>
