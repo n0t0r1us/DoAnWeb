@@ -1,0 +1,102 @@
+﻿
+@{
+    ViewBag.Title = "Thanh Toán";
+}
+<style>
+    .error{color:red;}
+</style>
+
+<link rel="stylesheet" type="text/css" href="~/Content/assets/styles/categories_styles.css">
+<link rel="stylesheet" type="text/css" href="~/Content/assets/styles/categories_responsive.css">
+
+<div class="container product_section_container">
+    <div class="row">
+        <div class="col product_section clearfix">
+
+            <!-- Breadcrumbs -->
+
+            <div class="breadcrumbs d-flex flex-row align-items-center">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="active"><a href="/"><i class="fa fa-angle-right" aria-hidden="true"></i>Giỏ Hàng</a></li>
+                </ul>
+            </div>
+
+            <!-- Sidebar -->
+            <!-- Main Content -->
+
+            <div class="row">
+
+                <div class="col-md-12 text-center">
+                    <h1 class="">Thanh Toán</h1>
+                    <p>Bạn Hãy Kiểm Tra Lại Thông Tin Đơn Hàng Cho Chính Xác!</p>
+
+                </div>
+
+
+            </div>
+            <hr />
+            @if (ViewBag.CheckGioHang != null)
+            {
+                <div class="row">
+                    <div id="show_success"></div>
+                    <div style="display:none" id="show_success"></div>
+                    <div class="col-md-9">
+                       @Html.Action("Partial_ThanhToan", "GioHang")
+                    </div>
+                    <div class="col-md-3">
+                        @Html.Action("Partial_Item_ThanhToan", "GioHang")
+
+
+                    </div>
+
+                </div>
+            }
+            else
+            {
+                <div>
+                    Bạn Chưa Có Mặt Hàng Nào. Vui Lòng Quay Lại Trang <a href="/mat-hang">Mặt Hàng</a> Để Mua Hàng.
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Content/assets/js/categories_custom.js"></script>
+    <script>
+        function OnFailure(rs) {
+            if (!rs.Success) {
+                $('#show_success').html("Bạn Mua Thất Bại Xin Vui Lòng Thử Lại!");
+            }
+        }
+        $(document).ready(function () {
+            $('#myForm').validate({
+                rules: {
+                    'TenKH': {
+                        required: true
+                    },
+                    'SDT': {
+                        required: true
+                    },
+                    'DiaChi': {
+                        required: true,
+                    },
+                    'Email': {
+                        required: true,
+                        email: true
+                    }
+                    },
+                    messages: {
+                        'TenKH': 'Bạn Không Được Để Trống Trường Này!',
+                        'SDT': 'Bạn Không Được Để Trống Trường Này!',
+                        'DiaChi': 'Bạn Không Được Để Trống Trường Này!',
+                        'Email': 'Email chưa hợp lệ!',
+                    }
+                
+            });
+        });
+    </script>
+}
+

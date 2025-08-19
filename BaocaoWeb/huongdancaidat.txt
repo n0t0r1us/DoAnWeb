@@ -1,0 +1,10 @@
+Bước 1 : Tạo database bằng cách chạy file Creare_BookStore.sql sau đó nhập dữ liệu cho database bằng cách
+chạy file Insert_BookStore.sql. Hoàn thành bước này ta có được database có tên BookStore.
+
+Bước 2 : Giải nén file BookStore.rar và chạy file BookStore.sln chỉnh sửa connectionString trong file Web.config
+bằng tên máy chủ Sql, tên đăng nhập, mật khẩu (nếu có).
+
+Bước 3 : Chạy View -> GioiThieu -> Index.cshtml để vào trang chủ.
+	 Chạy Areas -> Admin -> View -> Auth -> Login.cshtml để vào trang đăng nhập cho admin hoặc nhân viên.
+
+*Trang web được public lên mạng với địa chỉ : http://shopvinhphuoc.somee.com

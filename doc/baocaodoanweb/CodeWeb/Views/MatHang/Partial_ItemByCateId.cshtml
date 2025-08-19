@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Web_61131562.Models.EF.MatHang>
+@if (Model != null && Model.Any())
+{
+    foreach (var item in Model)
+    {
+        <!-- Product 1 -->
+        var strImg = "";
+        var img = item.AnhMH.FirstOrDefault(x=>x.MacDinh);
+        if(img!= null)
+        {
+            strImg = img.Anh;
+        }
+        <div class="product-item @item.LoaiMH.Alias">
+            <div class="product discount product_filter">
+                <div class="product_image">
+                    <img src="@strImg" alt="@item.TenMH">
+                </div>
+                <div class="favorite favorite_left"></div>
+                @*<div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>sale</span></div>*@
+                <div class="product_bubble product_bubble_left product_bubble_green d-flex flex-column align-items-center"><span>new</span></div>
+                <div class="product_info">
+                    <h6 class="product_name"><a href="/chi-tiet/@item.Alias-p@(item.MaMH)">@item.TenMH</a></h6>
+                    @if (item.GiaKM > 0)
+                    {
+                        <div class="product_price">@Web_61131562.Common.Common.FormatNumber(item.GiaKM, 0)<span>@Web_61131562.Common.Common.FormatNumber(item.GiaBan, 0)</span></div>
+                        <div style="display:none;" class="in_product_price">@item.GiaKM</div>
+                    }
+                    else
+                    {
+                        <div class="product_price">@Web_61131562.Common.Common.FormatNumber(item.GiaBan, 0)</div>
+                        <div style="display:none;" class="in_product_price">@item.GiaBan</div>
+                    }
+
+                </div>
+            </div>
+            <div class="red_button add_to_cart_button"><a href="#" class="btnThemVaoGioHang" data-id="@item.MaMH">Thêm Vào Giỏ Hàng</a></div>
+        </div>
+    }
+}
